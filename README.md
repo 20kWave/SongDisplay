@@ -36,13 +36,14 @@ Retrieve a song based on id.
 Add a comment to a song.
 
 ### DELETE
-`/query/song/:songId`
+`/query/comment/:songId`
 
 | Query Params| Type |
 | ----------- | ----------- |
 | songId | number |
+| commentId | number |
 
-Delete a song from the database and all associated comments
+Delete a comment from a song
 
 ### PUT
 `/query/songname/:songId`
