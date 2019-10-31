@@ -1,0 +1,5 @@
+node_modules/
+songs_for_soundcloud/
+__tests__/
+__mocks__/
+test.config.js
