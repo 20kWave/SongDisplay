@@ -19,13 +19,13 @@ Dynamically renders a song based on id of the entrypoint url.
 
 Retrieve a song based on id.
 
-####Parameters
+#### Parameters
 
 | Query Params| Type |
 | ----------- | ----------- |
 | `songId` | `number` |
 
-####Response
+#### Response
 
 | Name | Type |
 | ----------- | ----------- |
@@ -50,7 +50,7 @@ Retrieve a song based on id.
 
 Add a comment to a song.
 
-####Body
+#### Body
 
 | Query Params | Type |
 | ----------- | ----------- |
@@ -66,7 +66,7 @@ Add a comment to a song.
 
 Delete a comment from a song
 
-####Parameters
+#### Parameters
 
 | Query Params| Type |
 | ----------- | ----------- |
