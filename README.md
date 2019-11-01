@@ -15,7 +15,7 @@ This feature is an audio player
 Dynamically renders a song based on id of the entrypoint url.
 
 ### GET
-`/query/song/:song_id`
+`/song/:song_id`
 
 | Query Params| Type |
 | ----------- | ----------- |
@@ -24,7 +24,7 @@ Dynamically renders a song based on id of the entrypoint url.
 Retrieve a song based on id.
 
 ### POST
-`/query/comment/:songId`
+`/comment/:songId`
 
 | Query Params | Type |
 | ----------- | ----------- |
@@ -36,7 +36,7 @@ Retrieve a song based on id.
 Add a comment to a song.
 
 ### DELETE
-`/query/comment/:songId`
+`/comment/:songId`
 
 | Query Params| Type |
 | ----------- | ----------- |
@@ -46,11 +46,12 @@ Add a comment to a song.
 Delete a comment from a song
 
 ### PUT
-`/query/songname/:songId`
+`/song/:songId`
 
 | Query Params| Type |
 | ----------- | ----------- |
 | songId | number |
+| songName | string |
 
 Update a song's name.
 

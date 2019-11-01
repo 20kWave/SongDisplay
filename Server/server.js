@@ -43,9 +43,9 @@ app.use('/song/:songId', express.static(path.join(__dirname, '../public/')));
 //   db.getSong(song_id, res);
 // });
 
-app.get('/query/song/:songId', router.router);
-app.post('/query/comment/:songId', router.router);
-app.delete('/query/comment/:songId', router.router);
-app.put('/query/songname/:songId', router.router);
+app.get('/song/:songId', router.router);
+app.post('/comment/:songId', router.router);
+app.delete('/comment/:songId', router.router);
+app.put('/song/:songId', router.router);
 
 app.listen(port, () => console.log(`Express App running on port ${port}`));
