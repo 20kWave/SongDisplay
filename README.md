@@ -17,15 +17,36 @@ Dynamically renders a song based on id of the entrypoint url.
 ### GET
 `/song/:song_id`
 
+Retrieve a song based on id.
+####Parameters
 | Query Params| Type |
 | ----------- | ----------- |
 | songId | number |
 
-Retrieve a song based on id.
+####Response
+| Name | Type |
+| ----------- | ----------- |
+| song_id | int |
+| song_name | string |
+| upload_time | int |
+| tag | string |
+| song_art_url | string |
+| background_light | string |
+| background_dark | string |
+| waveform_data | JSON |
+| song_duration | int|
+| comment_id | int |
+| comment | string |
+| username | string |
+| timestamp | int |
+| artist_name | string |
+
 
 ### POST
 `/comment/:songId`
 
+Add a comment to a song.
+####Body
 | Query Params | Type |
 | ----------- | ----------- |
 | songId | number |
@@ -33,27 +54,30 @@ Retrieve a song based on id.
 | userId | number |
 | time | dateTime |
 
-Add a comment to a song.
+
 
 ### DELETE
 `/comment/:songId`
 
+Delete a comment from a song
+####Parameters
 | Query Params| Type |
 | ----------- | ----------- |
 | songId | number |
 | commentId | number |
 
-Delete a comment from a song
+
 
 ### PUT
 `/song/:songId`
 
+Update a song's name.
+####Parameters
 | Query Params| Type |
 | ----------- | ----------- |
 | songId | number |
 | songName | string |
 
-Update a song's name.
 
 ## Requirements
 
