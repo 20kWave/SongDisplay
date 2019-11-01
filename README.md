@@ -52,7 +52,7 @@ Add a comment to a song.
 
 #### Body
 
-| Query Params | Type |
+| Name | Type |
 | ----------- | ----------- |
 | `songId` | number |
 | `comment` | string |
@@ -80,7 +80,7 @@ Delete a comment from a song
 
 Update a song's name
 
-####Parameters
+#### Parameters
 
 | Query Params| Type |
 | ----------- | ----------- |
