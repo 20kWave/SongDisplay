@@ -1,6 +1,6 @@
 DROP KEYSPACE IF EXISTS wavedisplay ;
 
-create keyspace if not exists wavedisplay with replication = {'class':'SimpleStrategy', 'replication_factor': 3};
+create keyspace if not exists wavedisplay with replication = {'class':'SimpleStrategy', 'replication_factor': 1};
 
 use wavedisplay;
 
@@ -11,11 +11,12 @@ Create table Songs_Comments
   upload_time bigint,
   tag text,
   song_art_url text,
+  song_data_url text,
   background_light text,
   background_dark text,
   waveform_data blob,
   song_duration int
-  comment_id uuid,
+  comment_id int,
   comment text,
   username text,
   timestamp int,

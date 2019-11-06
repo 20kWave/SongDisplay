@@ -6,7 +6,7 @@ CREATE DATABASE wavedisplay;
 
 create table Artists (
   artist_id SERIAL PRIMARY KEY,
-  artist_name int
+  artist_name varchar(255)
 );
 
 create table Songs (
@@ -18,7 +18,7 @@ create table Songs (
   song_data_url varchar(255),
   background_light varchar(255),
   background_dark varchar(255),
-  waveform_data JSON,
+  waveform_data text,
   song_duration int,
   artist_id int,
   PRIMARY KEY (song_id),
@@ -34,11 +34,14 @@ create table Users (
 create table Comments (
   comment_id SERIAL,
   time_stamp int NOT NULL,
-  comment varchar(255) NOT NULL,
+  comment text NOT NULL,
   song_id int NOT NULL,
   user_id int NOT NULL,
-  PRIMARY KEY (comment_id),
-  FOREIGN KEY (song_id) references Songs(song_id),
-  FOREIGN KEY (user_id) references Users(user_id)
+  PRIMARY KEY (comment_id)
+  -- FOREIGN KEY (song_id) references Songs(song_id),
+  -- FOREIGN KEY (user_id) references Users(user_id)
 );
+
+-- ALTER TABLE Comments  ADD CONSTRAINT song_id FOREIGN KEY (song_id) REFERENCES Songs(song_id);
+-- ALTER TABLE Comments  ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES Users(user_id);
 
