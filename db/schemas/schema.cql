@@ -14,8 +14,8 @@ Create table Songs_Comments
   song_data_url text,
   background_light text,
   background_dark text,
-  waveform_data blob,
-  song_duration int
+  waveform_data text,
+  song_duration int,
   comment_id int,
   comment text,
   username text,

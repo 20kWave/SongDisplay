@@ -48,4 +48,8 @@ app.post('/comment/:songId', router.router);
 app.delete('/comment/:songId', router.router);
 app.put('/song/:songId', router.router);
 
+
+app.get('/cass/:songId?', router.router);
+app.get('/postgres/:songId?', router.router);
+
 app.listen(port, () => console.log(`Express App running on port ${port}`));

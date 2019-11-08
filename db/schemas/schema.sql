@@ -42,6 +42,15 @@ create table Comments (
   -- FOREIGN KEY (user_id) references Users(user_id)
 );
 
--- ALTER TABLE Comments  ADD CONSTRAINT song_id FOREIGN KEY (song_id) REFERENCES Songs(song_id);
--- ALTER TABLE Comments  ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES Users(user_id);
+create table Comments (
+  comment_id SERIAL,
+  time_stamp int NOT NULL,
+  comment text NOT NULL,
+  song_id int NOT NULL,
+  user_id int NOT NULL,
+  PRIMARY KEY (comment_id)
+);
+
+-- ALTER TABLE Comments ADD CONSTRAINT song_id FOREIGN KEY (song_id) REFERENCES Songs(song_id);
+-- ALTER TABLE Comments ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES Users(user_id);
 

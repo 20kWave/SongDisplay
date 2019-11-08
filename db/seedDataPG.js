@@ -56,8 +56,7 @@ function writeArtistUsersSong(writer, encoding, callback, table) {
 
 
 function writeComments(writer, encoding, callback) {
-  //300M
-  let i = 150000000;
+  let i = 70000000;
   let id = 0;
 
   function write() {
@@ -65,7 +64,7 @@ function writeComments(writer, encoding, callback) {
     do {
 
       // var numOfComments = Math.floor(Math.random() * (30 - 1) + 1);
-      var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .90));
+      var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .95));
       var actualId = song_id % 96;
       var song_duration = songs[actualId].song_duration;
       var timestamp = Math.round(Math.random() * (song_duration - 0) + 0);
@@ -95,9 +94,6 @@ function getRndBias(min, max, bias, influence) {
   var mix = Math.random() * influence; // random mixer
   return rnd * (1 - mix) + bias * mix; // mix full range and bias
 }
-
-
-
 
 // const writeArists = fs.createWriteStream('artists.csv');
 // writeArists.write('artist_name\n', 'utf8');

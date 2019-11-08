@@ -6,27 +6,35 @@ const filePath = '/Users/Britt-Britt1/hackReactor/SongDisplay/db/20kWave - Sheet
 function writeComments(writer, encoding, callback) {
   //300M
   // let i = 160000000;
-  let i = 100;
+  let i = 80000000;
+  // let i = 300;
   let id = 0;
+  let songId = 0;
+  let commentTracker = {};
 
   function write() {
     let ok = true;
     do {
       let data = '';
-
-      if (i > 4) {
+      if (i > 70000000) {
         if (id === 96) {
           id = 0;
         }
         var s = songs[id];
-        data = `${id + 1}|${s.song_name}|${s.date_posted}|${s.tag}|${s.song_art_url}|${s.song_data_url}|${s.background_light}|${s.background_dark}|${`https://20kwave.s3-us-west-1.amazonaws.com/waveform-${id + 1}.json`}|${s.song_duration}| | | | | \n`;
+        songId += 1;
+        data = `${songId}|${s.song_name}|${s.date_posted}|${s.tag}|${s.song_art_url}|${s.song_data_url}|${s.background_light}|${s.background_dark}|${`https://20kwave.s3-us-west-1.amazonaws.com/waveform-${id + 1}.json`}|${s.song_duration}|${-1}|||| \n`;
       } else {
-        var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .90));
+        var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .95));
+        // var song_id = Math.trunc(getRndBias(1, 100, 80, .90));
         var actualId = song_id % 96;
         var song_duration = songs[actualId].song_duration;
         var timestamp = Math.round(Math.random() * (song_duration - 0) + 0);
-        data = `${song_id}||||||||||comment_id|${faker.lorem.sentences(Math.trunc(getRndBias(1, 5, 1, 1)))}|${faker.internet.userName()}|${timestamp}|${faker.name.firstName()} \n`;
-
+        if (!commentTracker[song_id]) {
+          commentTracker[song_id] = 1;
+        } else {
+          commentTracker[song_id] = commentTracker[song_id] + 1;
+        }
+        data = `${song_id}||||||||||${commentTracker[song_id]}|${faker.lorem.sentences(Math.trunc(getRndBias(1, 5, 1, 1)))}|${faker.internet.userName()}|${timestamp}|${faker.name.firstName()}\n`;
       }
 
       i -= 1;
