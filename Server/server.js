@@ -2,9 +2,10 @@
 const express = require('express');
 const path = require('path');
 const router = require('./router.js');
-const db = require('../db/Model');
+// const db = require('../db/Model');
 const compression = require('compression');
-
+const newrelic = require('newrelic');
+var bodyParser = require('body-parser');
 const app = express();
 
 // Sidebar is on port 5000; use 5001
@@ -33,23 +34,19 @@ function shouldCompress(req, res) {
   return compression.filter(req, res);
 }
 
+app.use(bodyParser.json());
+
 // Serve the static index file from the React app
+app.use('/', express.static(path.join(__dirname, '../public/')));
 app.use('/song/:songId', express.static(path.join(__dirname, '../public/')));
 
-// Get specific song
-// app.get('/query/getSong/:song_id', (req, res) => {
-//   const id = req.params.song_id;
-//   const song_id = 'Song_'.concat(String(id));
-//   db.getSong(song_id, res);
-// });
-
-app.get('/song/:songId', router.router);
-app.post('/comment/:songId', router.router);
-app.delete('/comment/:songId', router.router);
-app.put('/song/:songId', router.router);
+app.get('/display/song/:songId', router.router);
+app.post('/display/comment/:songId', router.router);
+app.delete('/display/comment/:songId', router.router);
+app.put('/display/song/:songId', router.router);
 
 
 app.get('/cass/:songId?', router.router);
-app.get('/postgres/:songId?', router.router);
+// app.get('/postgres/:songId?', router.router);
 
 app.listen(port, () => console.log(`Express App running on port ${port}`));

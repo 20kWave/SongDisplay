@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-
 import SongPlayer from './SongPlayer';
 import PlayerHead from './PlayerHead';
 
@@ -140,19 +139,21 @@ export default class SongDisplay extends React.Component {
     const lastSegment = parts.pop() || parts.pop(); // handle potential trailing slash
 
     axios
-      .get(`http://localhost:5001/query/song/${lastSegment}`)
+      .get(`/display/song/${lastSegment}`)
       .then((response) => {
 
         const songObj = response.data[0];
         songObj.comments = response.data[1];
         // Parse waveform data, calculate relative date posted
-        songObj.waveform_data = JSON.parse(songObj.waveform_data);
+        axios.get(songObj.waveform_data).then(res => {
+          songObj.waveform_data = res;
+        }).catch(err => { console.log('error getting s3 wave'); });
         songObj.date_posted = calculateDatePosted(songObj.upload_time);
         // songObj.song_data_url = '/Users/Britt-Britt1/hackReactor/SongDisplay/db/Shelter.mp3';
         const songAudio = new Audio(songObj.song_data_url);
 
         // Set to state then do the same for the rest of the songs
-        console.log('song url', songObj.song_data_url);
+        // console.log('song url', songObj.song_data_url);
         this.setState(
           {
             currentSongObj: songObj,
@@ -347,7 +348,7 @@ export default class SongDisplay extends React.Component {
 
   // Toggle current place in song using the slider
   handleSliderChange(event) {
-    console.log('handling slider click');
+    // console.log('handling slider click');
     // Save currentTime in object
     const newSongObj = this.state.currentSongObj;
     newSongObj.currentTime = event.target.value;

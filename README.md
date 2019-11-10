@@ -15,7 +15,7 @@ This feature is an audio player
 Dynamically renders a song based on id of the entrypoint url.
 
 ### GET
-`/song/:song_id`
+`/song/:songId`
 
 Retrieve a song based on id.
 
@@ -57,7 +57,7 @@ Add a comment to a song.
 | `songId` | number |
 | `comment` | string |
 | `userId` | number |
-| `time` | dateTime |
+| `timestamp` | dateTime |
 
 
 

@@ -22,7 +22,7 @@ function writeComments(writer, encoding, callback) {
         }
         var s = songs[id];
         songId += 1;
-        data = `${songId}|${s.song_name}|${s.date_posted}|${s.tag}|${s.song_art_url}|${s.song_data_url}|${s.background_light}|${s.background_dark}|${`https://20kwave.s3-us-west-1.amazonaws.com/waveform-${id + 1}.json`}|${s.song_duration}|${-1}|||| \n`;
+        data = `${songId}|${s.song_name}|${s.date_posted}|${s.tag}|${s.song_art_url}|${s.song_data_url}|${s.background_light}|${s.background_dark}|${`https://20kwave.s3-us-west-1.amazonaws.com/waveform-${id + 1}.json`}|${s.song_duration}|${-1}||||${faker.name.firstName()}\n`;
       } else {
         var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .95));
         // var song_id = Math.trunc(getRndBias(1, 100, 80, .90));
@@ -34,7 +34,7 @@ function writeComments(writer, encoding, callback) {
         } else {
           commentTracker[song_id] = commentTracker[song_id] + 1;
         }
-        data = `${song_id}||||||||||${commentTracker[song_id]}|${faker.lorem.sentences(Math.trunc(getRndBias(1, 5, 1, 1)))}|${faker.internet.userName()}|${timestamp}|${faker.name.firstName()}\n`;
+        data = `${song_id}||||||||||${commentTracker[song_id]}|${faker.lorem.sentences(Math.trunc(getRndBias(1, 5, 1, 1)))}|${faker.internet.userName()}|${timestamp}|\n`;
       }
 
       i -= 1;

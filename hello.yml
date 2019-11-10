@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:5001'
+  phases:
+    - duration: 100
+      arrivalRate: 1
+scenarios:
+  - flow:
+    - loop:
+      - get:
+          url: "/postgres/{{$randomNumber(1,10000000)}}"
+      count: 1000

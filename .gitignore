@@ -1,7 +1,13 @@
 node_modules/
+db/waves/
+db/postgres copy commands
+db/queries.sql
 db/20kWave - Sheet1.csv
+db/previous seed
 db/jays example data.json
+*.csv
 songs_for_soundcloud/
 __tests__/
 __mocks__/
 test.config.js
+db/read20kwave.js

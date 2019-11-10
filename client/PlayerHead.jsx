@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-
+import React from 'react';
 const styles = require('./style/SongDisplay.module.css');
 
 const PlayerHead = (props) => {

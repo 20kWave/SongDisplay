@@ -1,0 +1,12 @@
+COPY songs (song_name, upload_time, tag, song_art_url, song_data_url, background_light, background_dark, waveform_data, song_duration, artist_id) from '/Users/Britt-Britt1/hackReactor/SongDisplay/db/songs.csv' delimiter '|' CSV HEADER;
+
+COPY comments (time_stamp, comment, song_id, user_id) from '/Users/Britt-Britt1/hackReactor/SongDisplay/db/comments.csv' delimiter '|' CSV HEADER;
+
+
+COPY users (name) from '/Users/Britt-Britt1/hackReactor/SongDisplay/db/users.csv' delimiter '|' CSV HEADER;
+
+
+COPY artists (artist_name) from '/Users/Britt-Britt1/hackReactor/SongDisplay/db/artists.csv' delimiter '|' CSV HEADER;
+
+
+COPY songs_comments (song_id, song_name, upload_time, tag, song_art_url, song_data_url, background_light, background_dark, waveform_data, song_duration, comment_id, comment, username, timestamp, artist_name) FROM '/Users/Britt-Britt1/hackReactor/SongDisplay/db/seedCass.csv' WITH DELIMITER = '|' AND HEADER = true AND CHUNKSIZE = 5000;
