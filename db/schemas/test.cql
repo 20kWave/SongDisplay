@@ -1,8 +1,8 @@
-DROP KEYSPACE IF EXISTS wavedisplay ;
+DROP KEYSPACE IF EXISTS waveTest ;
 
-create keyspace if not exists wavedisplay with replication = {'class':'SimpleStrategy', 'replication_factor': 2};
+create keyspace if not exists waveTest with replication = {'class':'SimpleStrategy', 'replication_factor': 3};
 
-use wavedisplay;
+use waveTest;
 
 Create table Songs_Comments
 (

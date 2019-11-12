@@ -2,39 +2,34 @@ const faker = require('faker');
 const fs = require('fs');
 const readSongCSV = require('./read20kwave.js');
 const filePath = '/Users/Britt-Britt1/hackReactor/SongDisplay/db/20kWave - Sheet1.csv';
+const Uuid = require('cassandra-driver').types.Uuid;
 
 function writeComments(writer, encoding, callback) {
   //300M
-  // let i = 160000000;
-  let i = 80000000;
-  // let i = 300;
+  // let i = 80000000;
+  let i = 500;
   let id = 0;
   let songId = 0;
-  let commentTracker = {};
 
   function write() {
     let ok = true;
     do {
       let data = '';
-      if (i > 70000000) {
+      if (i > 350) {
         if (id === 96) {
           id = 0;
         }
         var s = songs[id];
         songId += 1;
-        data = `${songId}|${s.song_name}|${s.date_posted}|${s.tag}|${s.song_art_url}|${s.song_data_url}|${s.background_light}|${s.background_dark}|${`https://20kwave.s3-us-west-1.amazonaws.com/waveform-${id + 1}.json`}|${s.song_duration}|${-1}||||${faker.name.firstName()}\n`;
+        data = `${songId}|${s.song_name}|${s.date_posted}|${s.tag}|${s.song_art_url}|${s.song_data_url}|${s.background_light}|${s.background_dark}|${`https://20kwave.s3-us-west-1.amazonaws.com/waveform-${id + 1}.json`}|${s.song_duration}|${Uuid.random()}||||${faker.name.firstName()}\n`;
       } else {
-        var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .95));
-        // var song_id = Math.trunc(getRndBias(1, 100, 80, .90));
+        // var song_id = Math.trunc(getRndBias(1, 10000000, 8000000, .95));
+        var song_id = Math.trunc(getRndBias(1, 150, 90, .95));
         var actualId = song_id % 96;
         var song_duration = songs[actualId].song_duration;
         var timestamp = Math.round(Math.random() * (song_duration - 0) + 0);
-        if (!commentTracker[song_id]) {
-          commentTracker[song_id] = 1;
-        } else {
-          commentTracker[song_id] = commentTracker[song_id] + 1;
-        }
-        data = `${song_id}||||||||||${commentTracker[song_id]}|${faker.lorem.sentences(Math.trunc(getRndBias(1, 5, 1, 1)))}|${faker.internet.userName()}|${timestamp}|\n`;
+        
+        data = `${song_id}||||||||||${Uuid.random()}|${faker.lorem.sentences(Math.trunc(getRndBias(1, 5, 1, 1)))}|${faker.internet.userName()}|${timestamp}|\n`;
       }
 
       i -= 1;
@@ -63,12 +58,22 @@ function getRndBias(min, max, bias, influence) {
   return rnd * (1 - mix) + bias * mix; // mix full range and bias
 }
 
+// var headers = 'song_id | song_name |upload_time |tag |song_art_url|song_data_url |background_light |background_dark |waveform_data |song_duration |comment_id |comment |username |timestamp |artist_name \n';
+// const seedCass = fs.createWriteStream('seedCass.csv');
+// seedCass.write(headers);
+// var songs = [];
+// readSongCSV.readSongCSV(filePath, songs, () => { 
+//   writeComments(seedCass, 'utf-8', () => {
+//     seedCass.end();
+//   });
+// });
+
 var headers = 'song_id | song_name |upload_time |tag |song_art_url|song_data_url |background_light |background_dark |waveform_data |song_duration |comment_id |comment |username |timestamp |artist_name \n';
-const seedCass = fs.createWriteStream('seedCass.csv');
-seedCass.write(headers);
+const testCass = fs.createWriteStream('testCass.csv');
+testCass.write(headers);
 var songs = [];
 readSongCSV.readSongCSV(filePath, songs, () => { 
-  writeComments(seedCass, 'utf-8', () => {
-    seedCass.end();
+  writeComments(testCass, 'utf-8', () => {
+    testCass.end();
   });
 });
