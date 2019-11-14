@@ -35,7 +35,7 @@ function shouldCompress(req, res) {
 }
 
 app.use(bodyParser.json());
-
+app.use('/loaderio-23253b5bfab45a0883e84ad8417fa52f.txt',express.static(path.join(__dirname, '../loaderio-23253b5bfab45a0883e84ad8417fa52f.txt')));
 // Serve the static index file from the React app
 app.use('/', express.static(path.join(__dirname, '../public/')));
 app.use('/song/:songId', express.static(path.join(__dirname, '../public/')));

@@ -1,10 +1,17 @@
 const cassandra = require('cassandra-driver');
-const client = new cassandra.Client({ contactPoints: ['localhost'], localDataCenter: 'datacenter1', keyspace: 'wavedisplay' });
+const client = new cassandra.Client({ contactPoints: ['54.67.84.178'], localDataCenter: 'us-west', keyspace: 'wavedisplay' });
 
+client.connect((err)=>{
+  if (err) {
+    console.log('err connecting to cassandra', err);
+  } else {
+    console.log('connected to Cassandra');
+  }
+});
 
 function getCassandra(res, id) {
   const query = `SELECT * FROM songs_comments WHERE song_id=${id}`;
-  console.log('executing...', query);
+  //console.log('executing...', query);
   client.execute(query)
     .then(result => {
 
