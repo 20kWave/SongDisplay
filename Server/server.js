@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const router = require('./router.js');
 // const db = require('../db/Model');
 const compression = require('compression');
-const newrelic = require('newrelic');
 var bodyParser = require('body-parser');
 const app = express();
 
@@ -40,13 +40,6 @@ app.use('/loaderio-23253b5bfab45a0883e84ad8417fa52f.txt',express.static(path.joi
 app.use('/', express.static(path.join(__dirname, '../public/')));
 app.use('/song/:songId', express.static(path.join(__dirname, '../public/')));
 
-app.get('/display/song/:songId', router.router);
-app.post('/display/comment/:songId', router.router);
-app.delete('/display/comment/:songId', router.router);
-app.put('/display/song/:songId', router.router);
+app.use('/display', router);
 
-
-app.get('/cass/:songId?', router.router);
-// app.get('/postgres/:songId?', router.router);
-
-app.listen(port, () => console.log(`Express App running on port ${port}`));
+app.listen(port, () => console.log(`Service Song Display 1 running on port ${port}`));
