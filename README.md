@@ -1,4 +1,4 @@
-# SongDisplay
+# 20kWave Song Display Player
 
 This feature is an audio player 
 
