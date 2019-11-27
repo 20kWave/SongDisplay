@@ -6,7 +6,6 @@ This feature is an audio player
 
 1. [API](#API)
 1. [Requirements](#requirements)
-1. [Dependencies](#installing)
 1. [Development](#development)
 
 ## API
@@ -15,7 +14,7 @@ This feature is an audio player
 Dynamically renders a song based on id of the entrypoint url.
 
 ### GET
-`/song/:songId`
+`/display/song/:songId`
 
 Retrieve a song based on id.
 
@@ -46,7 +45,7 @@ Retrieve a song based on id.
 
 
 ### POST
-`/comment/:songId`
+`/display/comment/:songId`
 
 Add a comment to a song.
 
@@ -62,7 +61,7 @@ Add a comment to a song.
 
 
 ### DELETE
-`/comment/:songId`
+`/display/comment/:songId`
 
 Delete a comment from a song
 
@@ -76,7 +75,7 @@ Delete a comment from a song
 
 
 ### PUT
-`/song/:songId`
+`/display/song/:songId`
 
 Update a song's name
 
